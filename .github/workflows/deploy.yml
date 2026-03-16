@@ -4,12 +4,12 @@ on:
 workflow_dispatch:
 
 jobs:
-test-ssh:
+test:
 runs-on: ubuntu-latest
 
 ```
 steps:
-  - name: Test SSH Connection
+  - name: Test SSH
     uses: appleboy/ssh-action@master
     with:
       host: ${{ secrets.EC2_HOST }}
@@ -17,8 +17,7 @@ steps:
       key: ${{ secrets.EC2_KEY }}
       port: 22
       script: |
-        echo "Connected to EC2 successfully"
+        echo "Connected to EC2"
         whoami
         hostname
-        pwd
 ```
