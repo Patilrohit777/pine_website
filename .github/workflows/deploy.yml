@@ -1,14 +1,15 @@
 name: Test EC2 Connection
 
 on:
-    push:
-        branches:
-            - main
+push:
+branches:
+- main
 
 jobs:
 test:
 runs-on: ubuntu-latest
 
+```
 steps:
   - name: Test SSH connection
     uses: appleboy/ssh-action@master
@@ -21,3 +22,4 @@ steps:
         echo "Connected successfully"
         whoami
         hostname
+```
