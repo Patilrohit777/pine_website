@@ -9,7 +9,6 @@ jobs:
 deploy:
 runs-on: ubuntu-latest
 
-```
 steps:
 
   - name: Checkout repository
@@ -37,4 +36,4 @@ steps:
         docker build -t sip-calculator .
 
         docker run -d -p 80:80 --name sip-calculator sip-calculator
-```
+
