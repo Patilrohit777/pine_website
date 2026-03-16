@@ -22,9 +22,9 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         script: |
           ls
-          cd sip-calculator
+          cd pine_website
           git pull
-          docker stop sip-calculator || true
-          docker rm sip-calculator || true
-          docker build -t sip-calculator .
-          docker run -d -p 80:80 --name sip-calculator sip-calculator
+          docker stop pine_website || true
+          docker rm pine_website || true
+          docker build -t pine_website .
+          docker run -d -p 80:80 --name pine_website pine_website
