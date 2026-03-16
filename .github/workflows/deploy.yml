@@ -21,6 +21,7 @@ jobs:
         username: ec2-user
         key: ${{ secrets.EC2_KEY }}
         script: |
+          ls
           cd sip-calculator
           git pull
           docker stop sip-calculator || true
