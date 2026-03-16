@@ -21,6 +21,10 @@ jobs:
         username: ec2-user
         key: ${{ secrets.EC2_KEY }}
         script: |
-          echo "Connected successfully" 
-          whoami 
-          hostname
+          ls
+          cd sip-calculator
+          git pull
+          docker stop sip-calculator || true
+          docker rm sip-calculator || true
+          docker build -t sip-calculator .
+          docker run -d -p 80:80 --name sip-calculator sip-calculator
