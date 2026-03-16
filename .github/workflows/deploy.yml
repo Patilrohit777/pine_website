@@ -1,30 +1,24 @@
-name: Deploy Website
+name: Test EC2 Connection
 
 on:
-  push:
-    branches:
-      - main
+workflow_dispatch:
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+test-ssh:
+runs-on: ubuntu-latest
 
-    steps:
-
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Deploy to EC2
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ec2-user
-        key: ${{ secrets.EC2_KEY }}
-        script: |
-          ls
-          cd sip-calculator
-          git pull
-          docker stop sip-calculator || true
-          docker rm sip-calculator || true
-          docker build -t sip-calculator .
-          docker run -d -p 80:80 --name sip-calculator sip-calculator
+```
+steps:
+  - name: Test SSH Connection
+    uses: appleboy/ssh-action@master
+    with:
+      host: ${{ secrets.EC2_HOST }}
+      username: ec2-user
+      key: ${{ secrets.EC2_KEY }}
+      port: 22
+      script: |
+        echo "Connected to EC2 successfully"
+        whoami
+        hostname
+        pwd
+```
