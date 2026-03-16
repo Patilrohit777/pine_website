@@ -1,0 +1,29 @@
+name: Deploy Website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ubuntu
+        key: ${{ secrets.EC2_KEY }}
+        script: |
+          cd sip-calculator
+          git pull
+          docker stop sip-calculator || true
+          docker rm sip-calculator || true
+          docker build -t sip-calculator .
+          docker run -d -p 80:80 --name sip-calculator sip-calculator
