@@ -20,8 +20,7 @@ jobs:
         host: ${{ secrets.EC2_HOST }}
         username: ec2-user
         key: ${{ secrets.EC2_KEY }}
-        script: |
-          ls
+        script: 
           cd pine_website
           git pull
           docker stop pine_website || true
