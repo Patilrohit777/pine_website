@@ -23,6 +23,10 @@ jobs:
         script: 
           cd pine_website
           git pull
+          echo "###########################################"
+          docker version
+          doocker info
+          docker --help
           docker stop pine_website || true
           docker rm pine_website || true
           docker build -t pine_website .
