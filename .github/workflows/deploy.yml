@@ -34,3 +34,8 @@ jobs:
           docker rm pine_website || true
           docker build -t pine_website .
           docker run -d -p 80:80 --name pine_website pine_website
+          echo "###########################################"
+          docker ps
+          echo "###########################################"
+          docker ps -a
+          echo "###########################################"          
